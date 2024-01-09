@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #fff;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes twinkle {
+            50% {
+                opacity: 0.4;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            createStars();
+        });
+
+        function createStars() {
+            const numberOfStars = 50;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                createStar();
+            }
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            document.body.appendChild(star);
+
+            const randomX = Math.random() * window.innerWidth;
+            const randomDelay = Math.random() * 5;
+
+            star.style.left = `${randomX}px`;
+            star.style.animation = `fall 5s linear ${randomDelay}s infinite, twinkle 1s ease-in-out ${randomDelay}s infinite`;
+        }
+    </script>
+
+</body>
+</html>
